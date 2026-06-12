@@ -14,6 +14,3 @@ public class Account {
     }
 }
 
-enum AccountType{
-    COURANT, EPARGNE
-}

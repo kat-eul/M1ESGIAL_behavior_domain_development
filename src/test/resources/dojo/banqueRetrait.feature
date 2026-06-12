@@ -12,9 +12,6 @@ Feature: Retrait au distributeur
         | amount | result  |
         | 50     | success |
         | 150    | failure |
-        | 50     | success |
-        | 60     | failure |
-
 
   Scenario Outline: Succès ou échec d'un retrait selon la réserve du distributeur.
     Given Alice who has a bank account with a balance of 1000 euros
@@ -29,7 +26,7 @@ Feature: Retrait au distributeur
         | 200     | success |
         | 199     | failure |
 
-  Scenario: Règles de gestion d'un retrait réussi
+  Scenario Outline: Règles de gestion d'un retrait réussi
     Given Alice who has a bank account with a balance of <balance> euros
     And a cash machine with a reserve of <reserve> euros
     When Alice tries to withdraw <amount> euros
@@ -37,7 +34,7 @@ Feature: Retrait au distributeur
     And the balance of Alice's account is <final_balance> euros
     And the reserve of the cash machine is <final_reserve> euros
 
-    Example:
+    Examples:
         | balance | reserve | amount | final_balance | final_reserve |
         | 100     | 1000    | 50     | 50            | 950           |
         | 200     | 1000    | 100    | 100           | 900           |

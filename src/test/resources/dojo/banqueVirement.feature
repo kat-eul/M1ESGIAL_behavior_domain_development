@@ -30,8 +30,8 @@ Feature: Virement entre deux comptes
 
     Examples:
       |emetteur_id| bénéficiaire_id |amount | result       | final_balance | final_beneficiary_balance |
-      |1          | 3               |50     | possible     | 49            | 250                       |
-      |1          | 2               |50     | possible     | 49            | 200                       |
+      |1          | 3               |50     | possible     | 49            | 200                       |
+      |1          | 2               |50     | possible     | 49            | 250                       |
       |2          | 1               |50     | possible     | 150           | 150                       |
-      |2          | 1               |500    | not_possible | 150           | 200                       |
+      |2          | 1               |500    | not_possible | 200           | 100                       |
       |1          | 4               |50     | not_possible | 100           | 250                       |

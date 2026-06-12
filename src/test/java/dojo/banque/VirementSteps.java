@@ -17,6 +17,7 @@ public class VirementSteps {
 
     @Given("the following initial state of accounts:")
     public void the_following_initial_state_of_accounts(io.cucumber.datatable.DataTable dataTable) {
+        accounts.clear();
         dataTable.asMaps().forEach(row -> {
             Integer id = Integer.parseInt(row.get("account_id"));
             String owner = row.get("owner");
@@ -27,7 +28,7 @@ public class VirementSteps {
     }
 
     @When("{int} initiates a transfer to {int} with an amount of {int} euros")
-    public void initiates_a_transfer_to_with_an_amount_of_euros(Integer int1, Integer int2, Integer amount) {
+    public void initiates_a_transfer_to_with_an_amount_of_euros(int int1, int int2, int amount) {
         emetteur = accounts.get(int1);
         beneficiaire = accounts.get(int2);
         this.amount = amount;

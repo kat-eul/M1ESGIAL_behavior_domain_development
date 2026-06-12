@@ -1,5 +1,7 @@
 package dojo.banque;
 
+import java.util.Objects;
+
 public class TransferService {
 
     public String transferTo(Account emetteur, Account beneficiaire, Integer amount){
@@ -16,8 +18,10 @@ public class TransferService {
 
     private String transferIsPossible(Account emetteur, Account beneficiaire, Integer amount){
         //Vérification du type du compte
-        boolean isTypeAccountPossible = emetteur.type == AccountType.COURANT ||
-                (emetteur.type == AccountType.EPARGNE && emetteur.owner == beneficiaire.owner);
+        // Un virement est possible si le compte bénéficiaire est de type COURANT (tous propriétaires)
+        // ou si le bénéficiaire est de type EPARGNE et appartient au même propriétaire que l'émetteur.
+        boolean isTypeAccountPossible = beneficiaire.type == AccountType.COURANT ||
+                (beneficiaire.type == AccountType.EPARGNE && Objects.equals(emetteur.owner, beneficiaire.owner));
         //Vérification du solde avec frais
         boolean isSoldeSufficiant = false;
         if(emetteur.type == AccountType.COURANT){
